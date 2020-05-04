@@ -1,0 +1,203 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+input {
+  /* background: none; */
+  border: 0px;
+  outline: none;
+}
+li {
+  list-style: none;
+}
+.w {
+  width: 1200px;
+  margin: 0 auto;
+}
+.heard {
+  width: 100%;
+  height:80px;
+  background: linear-gradient(to right,red, orange, yellow, green, blue, indigo, violet);
+
+}
+body {
+  background-color: #867892;
+}
+.heard-main {
+  width: 1200px;
+  height: 80px;
+  /* background-color: skyblue; */
+  margin: 0 auto;
+  font-size: 40px;
+  line-height: 80px;
+}
+.heard .heard-main .logo {
+  float: left;
+  width: 320px;
+  height: 80px;
+  overflow: hidden;
+}
+.heard .heard-main .logo div {
+  width: 960px;
+  height: 80px;
+  /* border: #000000 solid; */
+}
+.heard .heard-main .logo span {
+  display: inline-block;
+  width: 320px;
+  height: 80px;
+}
+.heard .heard-main input {
+  float: right;
+  padding-left: 10px;
+  height: 30px;
+  font-size: 20px;
+  margin-top: 25px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 20px #888;
+}
+.main .ongoing-text {
+  font-size: 30px;
+}
+.main .ongoing-text .count{
+  margin-top: 4px;
+  float: right;
+  width: 35px;
+  height: 35px;
+  font-size: 25px;
+  background-color: #fffffb;
+  text-align: center;
+  color: #ef4136;
+  border-radius: 50%;
+}
+.main .done-text {
+  font-size: 30px;
+}
+.main .done-text .count {
+  margin-top: 4px;
+  float: right;
+  width: 35px;
+  height: 35px;
+  font-size: 25px;
+  background-color: #fffffb;
+  color: #2585a6;
+  text-align: center;
+  border-radius: 50%;
+}
+.main .ongoing ul li  {
+  position: relative;
+  font-size: 20px;
+  height: 50px;
+  line-height: 50px;
+  background-color: #fedcbd;
+  margin-top: 4px;
+  border-radius: 10px;
+  overflow: hidden;
+  z-index: 1;
+  /* box-shadow: 2px 2px 2px #888; */
+}
+.main .ongoing ul li:before {
+  position: absolute;
+  content:'';
+  height: 0px;
+  width: 0px;
+  left: -1250px;
+  border-top: 50px solid #ff4655;
+  border-left: 1200px solid #ff4655;
+  border-bottom: 0px solid transparent;
+  border-right: 50px solid transparent;
+  /* opacity: .5; */
+  transition: all 1s;
+  z-index: -1;
+  
+}
+.main .ongoing ul li:hover:before{
+  left: 0px;
+}
+.main .ongoing ul li .delete {
+  position: relative;
+  width: 50px;
+  height: 28px;
+  float: right;
+  margin-right: 10px;
+  margin-top: 15px;
+  border: none;
+  outline: none;
+  background-color: #90d7ec;
+  border-radius: 5px;
+  transition: all .2s;
+}
+.main .ongoing ul li .delete:hover {
+  width: 55px;
+  height: 32px;
+  margin-right: 6px;
+  margin-top: 10px;
+}
+
+.main .ongoing ul li .checkbox{
+  float: left;
+  margin-top: 10px;
+  margin-left: 5px;
+  width: 30px;
+  height: 30px;
+  
+}
+.main .ongoing ul li span {
+  float: left;
+  
+}
+.main .done ul li {
+  position: relative;
+  margin-top: 4px;
+  font-size: 20px;
+  height: 50px;
+  line-height: 50px;
+  background-color: #fedcbd;
+  border-radius: 10px;
+  opacity: .5;
+  overflow: hidden;
+}
+.main .done ul li:before {
+  position: absolute;
+  content:'';
+  height: 0px;
+  width: 0px;
+  left: -1250px;
+  border-top: 50px solid #ff4655;
+  border-left: 1200px solid #ff4655;
+  border-bottom: 0px solid transparent;
+  border-right: 50px solid transparent;
+  /* opacity: .5; */
+  transition: all 1s;
+  z-index: -1;
+}
+.main .done ul li:hover:before {
+  left: 0px;
+}
+.main .done ul li .delete {
+  width: 50px;
+  height: 28px;
+  float: right;
+  margin-right: 10px;
+  margin-top: 15px;
+  border: none;
+  background-color: #90d7ec;
+  outline: none;
+  transition: all .2s;
+}
+.main .done ul li .delete:hover {
+  width: 55px;
+  height: 32px;
+  margin-right: 6px;
+  margin-top: 10px;
+}
+.main .done ul li .checkbox {
+  float: left;
+  margin-top: 10px;
+  margin-left: 5px;
+  width: 30px;
+  height: 30px;
+}
+.main .done ul li span {
+  float: left;
+}
