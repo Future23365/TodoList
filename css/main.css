@@ -1,0 +1,106 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+input {
+  /* background: none; */
+  border: 0px;
+  outline: none;
+}
+li {
+  list-style: none;
+}
+.w {
+  width: 1200px;
+  margin: 0 auto;
+}
+.heard {
+  width: 100%;
+  height:80px;
+  background: linear-gradient(to right,red, orange, yellow, green, blue, indigo, violet);
+
+}
+
+.heard-main {
+  width: 1200px;
+  height: 80px;
+  /* background-color: skyblue; */
+  margin: 0 auto;
+  font-size: 40px;
+  line-height: 80px;
+}
+.heard .heard-main .logo {
+  float: left
+}
+.heard .heard-main input {
+  float: right;
+  padding-left: 10px;
+  height: 30px;
+  font-size: 20px;
+  margin-top: 25px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 20px #888;
+}
+.main .ongoing-text {
+  font-size: 30px;
+}
+.main .ongoing-text .count{
+  float: right;
+}
+.main .done-text {
+  font-size: 30px;
+}
+.main .done-text .count {
+  float: right;
+}
+.main .ongoing ul li  {
+  font-size: 20px;
+  height: 50px;
+  line-height: 50px;
+  background-color: #1AFD9C;
+  margin-top: 4px;
+  box-shadow: 2px 2px 2px #888;
+}
+.main .ongoing ul li .delete {
+  width: 50px;
+  height: 28px;
+  float: right;
+  margin-right: 10px;
+  margin-top: 15px;
+  /* border: none; */
+  outline: none;
+}
+.main .ongoing ul li .checkbox{
+  float: left;
+  margin-top: 10px;
+  width: 30px;
+  height: 30px;
+}
+.main .ongoing ul li span {
+  float: left;
+}
+.main .done ul li {
+  font-size: 20px;
+  height: 50px;
+  line-height: 50px;
+  background-color: pink;
+  border: 1px solid red;
+}
+.main .done ul li .delete {
+  width: 50px;
+  height: 28px;
+  float: right;
+  margin-right: 10px;
+  margin-top: 15px;
+  /* border: none; */
+  outline: none;
+}
+.main .done ul li .checkbox {
+  float: left;
+  margin-top: 10px;
+  width: 30px;
+  height: 30px;
+}
+.main .done ul li span {
+  float: left;
+}
