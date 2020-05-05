@@ -18,7 +18,6 @@ text_going.addEventListener("drop", function(event) {
   console.log(dataJson);
   dataJson[data].flag = false;
   localStorage.setItem("todo", JSON.stringify(dataJson));
-  // console.log(event);
   updateLi(ul_ongoing, ul_done);
 })
 
@@ -29,18 +28,15 @@ text_done.addEventListener("drop", function(event) {
   console.log(dataJson);
   dataJson[data].flag = true;
   localStorage.setItem("todo", JSON.stringify(dataJson));
-  // console.log(event);
   updateLi(ul_ongoing, ul_done);
 })
 let placeholderIndex = 0;
 let text = "";
 let showText = setInterval(function() {
-  // let attriBute = inputText.getAttribute("placeholder");
   let attriBute = ["请", "输", "入", "计", "划", "进", "行", "的", "事", "项"];
   text += attriBute[placeholderIndex];
   inputText.setAttribute("placeholder", text);
   placeholderIndex === attriBute.length-1 ? clearInterval(showText) : placeholderIndex++;
-  // console.log(placeholderIndex);
 }, 200)
 
 if(localStorage.getItem("todo") === null) {
@@ -62,7 +58,6 @@ function updateLi(element, ul_done) {
   element.innerHTML = "";
   ul_done.innerHTML = "";
   let valuei = JSON.parse(localStorage.getItem("todo"));
-  console.log(valuei);
   let count_ongoing = 0;
   let count_done = 0;
   if(valuei !== null){
@@ -97,7 +92,6 @@ function updateLi(element, ul_done) {
       console.log(index);
       let dataJson = JSON.parse(localStorage.getItem("todo"));
       dataJson[index].flag = !dataJson[index].flag;
-      // console.log(event);
       localStorage.clear();
       localStorage.setItem("todo", JSON.stringify(dataJson));
       updateLi(element, ul_done);
@@ -127,8 +121,7 @@ function updateLi(element, ul_done) {
   })
   li[i].addEventListener("dragstart", function() {
     dropData = this.lastChild.getAttribute("data-index");
-  })
-    
+  }) 
   }
 }
 }
@@ -142,11 +135,56 @@ function allowDrop(element) {
 }
 let span = document.querySelectorAll(".heard .heard-main .logo div span");
 let div = document.querySelector(".heard .heard-main .logo div");
+let leftButton = document.querySelector(".heard .heard-main .logo .left");
+let rightButton = document.querySelector(".heard .heard-main .logo .right");
+let spanClone = span[0].cloneNode(true);
+div.appendChild(spanClone);
 
-function animate(element, startPosition, endPosition) {
-  let step = (endPosition - startPosition) / 10;
-  
-  setInterval(function() {
-    element.style.left= - step + "px";
-  }, 1000)
+
+
+let x = 0;
+let throllte = true;
+rightButton.addEventListener("click", function() {
+  if(throllte === true) {
+    throllte = false;
+  x++;
+  if(x === div.childNodes.length) {
+    div.style.left = "0px";
+    x = 0;
+    x++;
+  }
+  animate(div, -320 * x, function() {
+    throllte = true;
+  });
+  }
+})
+leftButton.addEventListener("click", function() {
+  if(throllte === true) {
+    throllte = false;
+  x--;
+  if(x < 0) {
+    div.style.left = (div.childNodes.length -1) * -320 + "px";
+    x = div.childNodes.length - 1;
+    x--;
+  }
+  animate(div, -320 * x,function() {
+    throllte = true;
+  });
+  }
+})
+
+setInterval(function() {
+  rightButton.click();
+}, 3000);
+function animate(object, target, callback) {
+  object.timer = setInterval(function() {
+    let step =(target - object.offsetLeft) / 10;
+    step = step > 0 ? Math.ceil(step) : Math.floor(step);
+    object.style.left = object.offsetLeft + step + "px";
+    if(object.offsetLeft == target) {
+      clearInterval(object.timer);
+      callback();
+    }
+  }, 50)
+ 
 }

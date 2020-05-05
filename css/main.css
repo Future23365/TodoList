@@ -3,7 +3,6 @@
   margin: 0;
 }
 input {
-  /* background: none; */
   border: 0px;
   outline: none;
 }
@@ -26,21 +25,39 @@ body {
 .heard-main {
   width: 1200px;
   height: 80px;
-  /* background-color: skyblue; */
   margin: 0 auto;
   font-size: 40px;
   line-height: 80px;
 }
 .heard .heard-main .logo {
+  position: relative;
   float: left;
   width: 320px;
   height: 80px;
   overflow: hidden;
 }
+.heard .heard-main .logo .left {
+  position: absolute;
+  left: -30px;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  display: none;
+  z-index : 5;
+}
+.heard .heard-main .logo .right {
+  position: absolute;
+  right: -30px;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  display: none;
+
+}
 .heard .heard-main .logo div {
-  width: 960px;
+  position: absolute;
+  width: 1280px;
   height: 80px;
-  /* border: #000000 solid; */
 }
 .heard .heard-main .logo span {
   display: inline-block;
@@ -94,7 +111,6 @@ body {
   border-radius: 10px;
   overflow: hidden;
   z-index: 1;
-  /* box-shadow: 2px 2px 2px #888; */
 }
 .main .ongoing ul li:before {
   position: absolute;
@@ -106,7 +122,6 @@ body {
   border-left: 1200px solid #ff4655;
   border-bottom: 0px solid transparent;
   border-right: 50px solid transparent;
-  /* opacity: .5; */
   transition: all 1s;
   z-index: -1;
   
@@ -167,7 +182,6 @@ body {
   border-left: 1200px solid #ff4655;
   border-bottom: 0px solid transparent;
   border-right: 50px solid transparent;
-  /* opacity: .5; */
   transition: all 1s;
   z-index: -1;
 }
