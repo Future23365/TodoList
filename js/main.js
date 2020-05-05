@@ -143,10 +143,9 @@ function allowDrop(element) {
 let span = document.querySelectorAll(".heard .heard-main .logo div span");
 let div = document.querySelector(".heard .heard-main .logo div");
 
-function animate(element, startPosition, endPosition) {
-  let step = (endPosition - startPosition) / 10;
-  
-  setInterval(function() {
-    element.style.left= - step + "px";
-  }, 1000)
-}
+// function animate(element, startPosition, endPosition) {
+//   let step = (endPosition - startPosition) / 10;
+//   setInterval(function() {
+//     element.style.left= - step + "px";
+//   }, 1000)
+// }
