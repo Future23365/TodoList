@@ -188,3 +188,35 @@ function animate(object, target, callback) {
   }, 50)
  
 }
+let weater = document.querySelector(".main .ongoing-text .weater");
+let svg = document.querySelector(".main .ongoing-text .weater svg");
+let p = document.querySelector(".main .ongoing-text .weater p");
+let temperature = document.querySelector(".main .ongoing-text .weater .temperature");
+let weater_icon = {
+  xue : "#icon-xue",
+  lei : "#icon-ziyuan3",
+  shachen: "#icon-tianqi-shachen",
+  wu : "#icon-tianqi-wumai",
+  bingbao : "#icon-tianqi-bingbao",
+  yun : "#icon-ziyuan1",
+  yu : "#icon-ziyuan2",
+  yin : "#icon-yin",
+  qing : "#icon-qing",
+  yun_night : "#icon-ziyuan"
+}
+let xhr = new XMLHttpRequest();
+xhr.open("get", "https://tianqiapi.com/free/day?appid=92968218&appsecret=DdBt3gIQ&cityid=101010100", true);
+xhr.send(null);
+xhr.onreadystatechange = function() {
+  if (xhr.readyState === 4) {
+    if(xhr.status >= 200 &&xhr.status < 300 || xhr.status === 304) {
+      weater.style.display = "block";
+      let data = JSON.parse(xhr.responseText);
+      // console.log(data);
+      let wea_img = data.wea_img;
+      svg.innerHTML = "<use xlink:href='" + weater_icon[wea_img] + "'></use>"
+      p.innerHTML = data.wea;
+      temperature.innerHTML = data.tem + "°C";
+    }
+  }
+}

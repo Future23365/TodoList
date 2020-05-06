@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TodoList</title>
   <link rel="stylesheet" href="./css/main.css">
+  <script src="./iconfont/iconfont.js"></script>
 </head>
 <body>
   <div class="heard">
@@ -17,6 +18,13 @@
   </div>
   <div class="main w">
     <div class="ongoing-text">正在进行中
+      <div class="weater">
+        <svg class="icon " aria-hidden="true">
+          <use xlink:href="#icon-shouye"></use>
+        </svg>
+        <p>?</p>
+        <div class="temperature">?°C</div>
+      </div>
       <span class="count">0</span>
     </div>
     <div class="ongoing">
@@ -29,10 +37,10 @@
     </div>
     <div class="done">
       <ul>
-
       </ul>
     </div>
   </div>
+  
   <script src="js/main.js"></script>
 </body>
 </html>

@@ -2,6 +2,13 @@
   padding: 0;
   margin: 0;
 }
+.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
 input {
   border: 0px;
   outline: none;
@@ -214,4 +221,36 @@ body {
 }
 .main .done ul li span {
   float: left;
+}
+.main .ongoing-text .weater {
+  position: absolute;
+  right: 100px;
+  top: 100px;
+  width: 200px;
+  height: 200px;
+  /* background-color: skyblue; */
+  display: none;
+}
+
+.main .ongoing-text .weater svg {
+  display: block;
+  margin: 0 auto;
+  width: 100px;
+  height: 100px;
+  /* font-size: 100px; */
+  text-align: center;
+  
+}
+.main .ongoing-text .weater p {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  margin: 0 auto;
+}
+.main .ongoing-text .weater .temperature {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  margin: 0 auto;
+  /* line-height: 100px; */
 }
