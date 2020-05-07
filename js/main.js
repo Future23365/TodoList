@@ -188,6 +188,7 @@ function animate(object, target, callback) {
   }, 50)
  
 }
+<<<<<<< HEAD
 let weater = document.querySelector(".main .ongoing-text .weater");
 let svg = document.querySelector(".main .ongoing-text .weater svg");
 let p = document.querySelector(".main .ongoing-text .weater p");
@@ -220,3 +221,4 @@ xhr.onreadystatechange = function() {
     }
   }
 }
+
