@@ -188,7 +188,6 @@ function animate(object, target, callback) {
   }, 50)
  
 }
-<<<<<<< HEAD
 let weater = document.querySelector(".main .ongoing-text .weater");
 let svg = document.querySelector(".main .ongoing-text .weater svg");
 let p = document.querySelector(".main .ongoing-text .weater p");
@@ -205,20 +204,60 @@ let weater_icon = {
   qing : "#icon-qing",
   yun_night : "#icon-ziyuan"
 }
-let xhr = new XMLHttpRequest();
-xhr.open("get", "https://tianqiapi.com/free/day?appid=92968218&appsecret=DdBt3gIQ&cityid=101010100", true);
-xhr.send(null);
-xhr.onreadystatechange = function() {
-  if (xhr.readyState === 4) {
-    if(xhr.status >= 200 &&xhr.status < 300 || xhr.status === 304) {
-      weater.style.display = "block";
-      let data = JSON.parse(xhr.responseText);
-      // console.log(data);
-      let wea_img = data.wea_img;
-      svg.innerHTML = "<use xlink:href='" + weater_icon[wea_img] + "'></use>"
-      p.innerHTML = data.wea;
-      temperature.innerHTML = data.tem + "°C";
+let requestWeater = function() {
+  let xhr = new XMLHttpRequest();
+  xhr.open("get", "https://tianqiapi.com/free/day?appid=92968218&appsecret=DdBt3gIQ&cityid=101010100", true);
+  xhr.send(null);
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4) {
+      if(xhr.status >= 200 &&xhr.status < 300 || xhr.status === 304) {
+        weater.style.display = "block";
+        let data = JSON.parse(xhr.responseText);
+        let wea_img = data.wea_img;
+        if(data.wea_img === "yun")
+        {
+          let date = data.update_time.slice(22, 24);
+          if(date >= 18 || date < 4) {
+            data.wea_img = "yun_night";
+          }
+        }  
+        svg.innerHTML = "<use xlink:href='" + weater_icon[wea_img] + "'></use>"
+        p.innerHTML = data.wea;
+        temperature.innerHTML = data.tem + "°C";
+      }
     }
   }
 }
 
+requestWeater();
+setInterval(function() {
+  requestWeater();
+}, 600000)
+
+let quotation = document.querySelector(".main .ongoing-text .quotation ");
+window.addEventListener("load", function() {
+  quotation.style.left = 20 + 'px';
+})
+
+let requsetQuoation = function() {
+let xhr = new XMLHttpRequest();
+xhr.open("post", "https://api.66mz8.com/api/quotation.php?format=json", true);
+xhr.send(null);
+xhr.onreadystatechange = function() {
+  if (xhr.readyState === 4) {
+    if(xhr.status >= 200 &&xhr.status < 300 || xhr.status === 304) {
+      let data = JSON.parse(xhr.responseText);
+      quotation.style.left = -40 + 'px';
+      setTimeout(function() {
+        quotation.innerHTML = data.quotation;
+        console.log(data.quotation);
+      quotation.style.left = 20 + 'px';
+      }, 1000)
+        
+    }
+  }
+}
+}
+setInterval(function() {
+  requsetQuoation();
+}, 30000)
