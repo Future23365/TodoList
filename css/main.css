@@ -17,20 +17,21 @@ li {
   list-style: none;
 }
 .w {
-  width: 1200px;
+  max-width: 70%;
   margin: 0 auto;
 }
+/* 头部 */
 .heard {
   width: 100%;
   height:80px;
   background: linear-gradient(to right,red, orange, yellow, green, blue, indigo, violet);
-
 }
 body {
   background-color: #867892;
 }
 .heard-main {
-  width: 1200px;
+  position: relative;
+  max-width: 70%;
   height: 80px;
   margin: 0 auto;
   font-size: 40px;
@@ -72,15 +73,19 @@ body {
   height: 80px;
 }
 .heard .heard-main input {
-  float: right;
+  /* float: right; */
+  position: absolute;
+  width: 50%;
   padding-left: 10px;
+  right: 0px;
   height: 30px;
-  font-size: 20px;
+  font-size: 1rem;
   margin-top: 25px;
   border-radius: 5px;
   box-shadow: 2px 2px 20px #888;
 }
 .main .ongoing-text {
+  position: relative;
   font-size: 30px;
 }
 .main .ongoing-text .count{
@@ -110,7 +115,7 @@ body {
 }
 .main .ongoing ul li  {
   position: relative;
-  font-size: 20px;
+  font-size: 1rem;
   height: 50px;
   line-height: 50px;
   background-color: #fedcbd;
@@ -124,9 +129,9 @@ body {
   content:'';
   height: 0px;
   width: 0px;
-  left: -1250px;
+  left: -1550px;
   border-top: 50px solid #ff4655;
-  border-left: 1200px solid #ff4655;
+  border-left: 1500px solid #ff4655;
   border-bottom: 0px solid transparent;
   border-right: 50px solid transparent;
   transition: all 1s;
@@ -171,7 +176,7 @@ body {
 .main .done ul li {
   position: relative;
   margin-top: 4px;
-  font-size: 20px;
+  font-size: 1rem;
   height: 50px;
   line-height: 50px;
   background-color: #fedcbd;
@@ -184,9 +189,9 @@ body {
   content:'';
   height: 0px;
   width: 0px;
-  left: -1250px;
+  left: -1550px;
   border-top: 50px solid #ff4655;
-  border-left: 1200px solid #ff4655;
+  border-left: 1500px solid #ff4655;
   border-bottom: 0px solid transparent;
   border-right: 50px solid transparent;
   transition: all 1s;
@@ -224,43 +229,68 @@ body {
 }
 .main .ongoing-text .weater {
   position: absolute;
-  right: 100px;
-  top: 100px;
-  width: 200px;
-  height: 200px;
-  /* background-color: skyblue; */
-  display: none;
+  right: -8rem;
+  top: 0px;
+  width: 7rem;
+  height: 11rem;
 }
 
 .main .ongoing-text .weater svg {
   display: block;
   margin: 0 auto;
-  width: 100px;
-  height: 100px;
+  width: 7rem;
+  height: 7rem;
   /* font-size: 100px; */
   text-align: center;
+  /* display: none; */
   
 }
 .main .ongoing-text .weater p {
-  width: 50px;
-  height: 50px;
+  width: 7rem;
+  height: 2rem;
   text-align: center;
+  font-size: 1.5rem;
   margin: 0 auto;
 }
 .main .ongoing-text .weater .temperature {
-  width: 50px;
-  height: 50px;
+  width: 7rem;
+  height: 2rem;
   text-align: center;
+  font-size: 1.5rem;
   margin: 0 auto;
   /* line-height: 100px; */
 }
 
 .main .ongoing-text .quotation {
   position: absolute;
-  left: -20px;
-  top: 80px;
+  left: -2rem;
+  top: 10px;
   font-size: 20px;
   width:  20px;
+  height: 600px;
   writing-mode: vertical-lr;
   transition: all 1s;
+}
+/* 当屏幕过小时，使用媒体查询 */
+@media all and (max-width : 800px) {
+  .heard-main {
+    font-size: 16px;
+  }
+  .heard .heard-main .logo {
+    width: 160px;
+  }
+  .heard .heard-main .logo span {
+    width: 160px;
+  }
+  .heard .heard-main .logo div {
+    width: 640px;
+  }
+  .w {
+    width: 300px;
+  }
+
+  .main .ongoing-text .weater {
+    display: none;
+  }
+
 }
