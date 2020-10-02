@@ -16,7 +16,7 @@ text_going.addEventListener("drop", function(event) {
   let data = dropData;
   dropData = null;
   let dataJson = JSON.parse(localStorage.getItem("todo"));
-  console.log(dataJson);
+  // console.log(dataJson);
   dataJson[data].flag = false;
   localStorage.setItem("todo", JSON.stringify(dataJson));
   updateLi(ul_ongoing, ul_done);
@@ -26,7 +26,7 @@ text_done.addEventListener("drop", function(event) {
   let data = dropData;
   dropData = null;
   let dataJson = JSON.parse(localStorage.getItem("todo"));
-  console.log(dataJson);
+  // console.log(dataJson);
   dataJson[data].flag = true;
   localStorage.setItem("todo", JSON.stringify(dataJson));
   updateLi(ul_ongoing, ul_done);
@@ -81,7 +81,7 @@ function updateLi(element, ul_done) {
   for(let i = 0; i < btn.length; i++) {
     btn[i].addEventListener("click", function(valuei) {
       let index = this.getAttribute("data-index");
-      console.log(index);
+      // console.log(index);
       let dataJson = JSON.parse(localStorage.getItem("todo"));
       dataJson.splice(index, 1) ;
       localStorage.clear();
@@ -93,7 +93,7 @@ function updateLi(element, ul_done) {
     })
     checkBox[i].addEventListener("click", function(valuei, event) {
       let index = this.nextSibling.nextSibling.nextSibling.nextSibling.getAttribute("data-index");
-      console.log(index);
+      // console.log(index);
       let dataJson = JSON.parse(localStorage.getItem("todo"));
       dataJson[index].flag = !dataJson[index].flag;
       localStorage.clear();
@@ -264,7 +264,7 @@ xhr.onreadystatechange = function() {
           data.quotation = "不要等每一盏灯都熄灭才期盼光明"
         }
         quotation.innerHTML = data.quotation;
-        console.log(data.quotation);
+        // console.log(data.quotation);
         quotation.style.left = "-2rem";
       }, 1000)
     }
