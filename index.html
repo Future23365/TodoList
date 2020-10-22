@@ -21,43 +21,23 @@
       </select>
       <button>添加</button>
     </div>
-
   </header>
-  <div class="heard">
-    <div class="input-text">
-
-      <!-- <select>
-        <option value="重要"></option>
-        <option value="一般"></option>
-        <option value="不重要"></option>
-      </select> -->
-    </div>
-  </div>
-  <div class="main w">
-    <div class="ongoing-text">正在进行中
-      <div class="weater">
-        <svg class="icon " aria-hidden="true">
-          <use xlink:href="#icon-shouye"></use>
-        </svg>
-        <p>?</p>
-        <div class="temperature">?°C</div>
-      </div>
-      <div class="quotation">不要等每一盏灯都熄灭才期盼光明</div>
-      <span class="count">0</span>
-    </div>
-    <div class="ongoing">
+  <main>
+    <div id="unaccomplished">
+      <label for=""> 未完成</label>
+      <br>
       <ul>
-        <!-- <li></li> -->
+        <li><canvas id="tick"></canvas>123</li>
       </ul>
     </div>
-    <div class="done-text">已完成
-      <span class="count">0</span>
-    </div>
-    <div class="done">
+    <div id="complete">
+      <label for=""> 已完成</label>
+      <br>
       <ul>
+        <li>456</li>
       </ul>
     </div>
-  </div>
+  </main>
 
   <script src="js/main.js"></script>
 </body>

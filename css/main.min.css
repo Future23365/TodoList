@@ -1,16 +1,18 @@
 * { padding: 0; margin: 0; }
 
-.icon { width: 1em; height: 1em; vertical-align: -0.15em; fill: currentColor; overflow: hidden; }
-
 input { border: 0; outline: none; }
 
 select { border: 0; outline: none; }
 
 button { outline: none; border: 0; }
 
+li { list-style: none; }
+
 html { font-size: 1vw; }
 
 @media all and (max-width: 850px) { html { font-size: 2vw; } }
+
+body { background-color: #FFFFFF; }
 
 header { width: 100%; height: 9rem; text-align: center; background-color: #99CCFF; display: flex; flex-direction: column; justify-content: center; flex-wrap: wrap; align-items: center; }
 
@@ -18,13 +20,35 @@ header label { font-size: 3rem; }
 
 header div { margin-top: 1rem; }
 
-header div input { height: 2rem; width: 20rem; margin-bottom: 0.4rem; margin-right: 1rem; padding-left: 0.8rem; border-radius: 3px; }
+header div input { height: 2rem; width: 20rem; margin-bottom: 0.4rem; margin-right: 1rem; padding-left: 0.8rem; border-radius: 5px; }
+
+header div input:hover { outline: 2px solid #336699; }
 
 header div input:focus { outline: 2px solid #336699; }
 
-header div select { margin-right: 1rem; padding: 0.2rem 0.5rem; }
+header div select { margin-right: 1rem; padding: 0.2rem 0.5rem; background-color: #fff; border-radius: 5px; cursor: pointer; }
 
-header div button { padding: 0.2rem 0.5rem; }
+header div select:hover { outline: 2px solid #336699; }
 
-body { background-color: #FFFFFF; }
+header div select option:nth-child(1) { background-color: #FF6600; }
+
+header div select option:nth-child(2) { background-color: #FF9933; }
+
+header div select option:nth-child(3) { background-color: #FFFF33; }
+
+header div select option:hover { background-color: #fff; }
+
+header div button { padding: 0.2rem 0.5rem; background-color: #fff; border-radius: 5px; }
+
+header div button:hover { outline: 2px solid #336699; cursor: pointer; }
+
+main { width: 60%; margin: 0 auto; }
+
+main label { font-size: 2rem; }
+
+main > div { min-height: 100px; }
+
+main > div li { font-size: 1.5rem; background-color: #FFCC99; min-height: 40px; line-height: 40px; }
+
+main > div li > input { width: 2rem; height: 2rem; vertical-align: middle; }
 /*# sourceMappingURL=main.min.css.map */

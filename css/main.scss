@@ -1,13 +1,7 @@
+// 清除样式
 * {
   padding: 0;
   margin: 0;
-}
-.icon {
-  width: 1em;
-  height: 1em;
-  vertical-align: -0.15em;
-  fill: currentColor;
-  overflow: hidden;
 }
 input {
   border: 0;
@@ -21,6 +15,10 @@ button {
   outline: none;
   border: 0;
 }
+li {
+  list-style: none;
+}
+
 html {
   font-size: 1vw;
 }
@@ -28,6 +26,10 @@ html {
   html {
     font-size: 2vw;
   }
+}
+
+body {
+  background-color: #FFFFFF;
 }
 
 //头部
@@ -56,8 +58,11 @@ header {
       margin-bottom: 0.4rem;
       margin-right: 1rem;
       padding-left: 0.8rem;
-      border-radius: 3px;
+      border-radius: 5px;
       // border: 1px solid #336699;
+      &:hover {
+        outline: 2px solid #336699;
+      } 
     }
     input:focus {
       outline: 2px solid #336699;
@@ -66,13 +71,57 @@ header {
       // padding: 
       margin-right: 1rem;
       padding: 0.2rem 0.5rem;
+      background-color: #fff;
+      border-radius: 5px;
+      cursor: pointer;
+      &:hover {
+        outline: 2px solid #336699;
+      }
+      option {
+        &:nth-child(1) {
+          background-color: #FF6600;
+        }
+        &:nth-child(2) {
+          background-color: #FF9933;
+        }
+        &:nth-child(3) {
+          background-color:#FFFF33;
+        }
+        &:hover {
+          background-color: #fff;
+        }
+      } 
     }
     button {
       padding: 0.2rem 0.5rem;
+      background-color: #fff;
+      border-radius: 5px;
+      &:hover {
+        outline: 2px solid #336699;
+        cursor: pointer;
+      }
     }
   }
-  
 }
-body {
-  background-color: #FFFFFF;
+// 主体
+main {
+  width: 60%;
+  margin: 0 auto;
+  label {
+    font-size: 2rem;
+  }
+  &>div {
+    min-height: 100px;
+    li {
+      font-size: 1.5rem;
+      background-color: #FFCC99;
+      min-height: 40px;
+      line-height: 40px;
+      >input {
+        width: 2rem;
+        height: 2rem;
+        vertical-align: middle;
+      }
+    }
+  }
 }
