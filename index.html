@@ -1,19 +1,36 @@
 <!DOCTYPE html>
 <html lang="zn-CH">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TodoList</title>
-  <link rel="stylesheet" href="./css/main.css">
+  <link rel="stylesheet" href="./css/main.min.css">
   <script src="./iconfont/iconfont.js"></script>
 </head>
+
 <body>
-  <div class="heard">
-    <div class="heard-main">
-      <div class="logo"><span class="left"><</span><div><span>待办事项列表工具</span><span>简洁</span><span>方便</span></div><span class="right">></span></div>
-    <div class="inputText">
-      <input type="text" size="60" placeholder="请输入计划进行的事项">
+  <header>
+    <label for="readinput">ToDoList</label>
+    <div>
+      <input id="readinput" type="text" size="60" placeholder="请输入计划进行的事项">
+      <select name="" id="">
+        <option value="important">优先级： 高</option>
+        <option value="normal" selected>优先级：中</option>
+        <option value="unimportant">优先级：低</option>
+      </select>
+      <button>添加</button>
     </div>
+
+  </header>
+  <div class="heard">
+    <div class="input-text">
+
+      <!-- <select>
+        <option value="重要"></option>
+        <option value="一般"></option>
+        <option value="不重要"></option>
+      </select> -->
     </div>
   </div>
   <div class="main w">
@@ -41,7 +58,8 @@
       </ul>
     </div>
   </div>
-  
+
   <script src="js/main.js"></script>
 </body>
+
 </html>

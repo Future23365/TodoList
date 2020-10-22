@@ -1,0 +1,78 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+input {
+  border: 0;
+  outline: none;
+}
+select {
+  border: 0;
+  outline: none;
+}
+button {
+  outline: none;
+  border: 0;
+}
+html {
+  font-size: 1vw;
+}
+@media all and (max-width: 850px) {
+  html {
+    font-size: 2vw;
+  }
+}
+
+//头部
+header {
+  width: 100%;
+  // min-height: 80px;
+  height: 9rem;
+  // background: linear-gradient(to right, orange, yellow);
+  text-align: center;
+  background-color: #99CCFF;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  // align-content: space-between;
+  label {
+    font-size: 3rem;
+  }
+  div {
+    margin-top: 1rem;
+    // min-width: 480px;
+    input {
+      height: 2rem;
+      width: 20rem;
+      margin-bottom: 0.4rem;
+      margin-right: 1rem;
+      padding-left: 0.8rem;
+      border-radius: 3px;
+      // border: 1px solid #336699;
+    }
+    input:focus {
+      outline: 2px solid #336699;
+    }
+    select {
+      // padding: 
+      margin-right: 1rem;
+      padding: 0.2rem 0.5rem;
+    }
+    button {
+      padding: 0.2rem 0.5rem;
+    }
+  }
+  
+}
+body {
+  background-color: #FFFFFF;
+}
