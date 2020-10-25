@@ -21,10 +21,11 @@ li {
 
 html {
   font-size: 1vw;
+  // min-width: 350px;
 }
 @media all and (max-width: 850px) {
   html {
-    font-size: 2vw;
+    font-size: 1.8vw;
   }
 }
 
@@ -37,6 +38,8 @@ header {
   width: 100%;
   // min-height: 80px;
   height: 9rem;
+  min-height: 80px;
+  // min-width: 380px;
   // background: linear-gradient(to right, orange, yellow);
   text-align: center;
   background-color: #99CCFF;
@@ -49,13 +52,20 @@ header {
   label {
     font-size: 3rem;
   }
-  div {
-    margin-top: 1rem;
+  >div {
+    height: 2rem;
+    min-height: 25px;
+    // min-width: 290px;
+    width: 50rem;
+    margin: 1rem 0;
     // min-width: 480px;
+    display: flex;
+    align-items: stretch;
     input {
-      height: 2rem;
+      flex: 8 0 160px;
+      // height: 2rem;
       width: 20rem;
-      margin-bottom: 0.4rem;
+      // margin-bottom: 0.4rem;
       margin-right: 1rem;
       padding-left: 0.8rem;
       border-radius: 5px;
@@ -67,32 +77,67 @@ header {
     input:focus {
       outline: 2px solid #336699;
     }
-    select {
-      // padding: 
+    .select {
+      flex: 3 0 70px;
+      position: relative;
       margin-right: 1rem;
-      padding: 0.2rem 0.5rem;
       background-color: #fff;
       border-radius: 5px;
       cursor: pointer;
-      &:hover {
-        outline: 2px solid #336699;
-      }
-      option {
-        &:nth-child(1) {
-          background-color: #FF6600;
-        }
-        &:nth-child(2) {
-          background-color: #FF9933;
-        }
-        &:nth-child(3) {
-          background-color:#FFFF33;
+      ul {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        // overflow: hidden;
+        .option {
+          font-size: 1rem;
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          height: 100%;
+          text-align: center;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          &:nth-child(1) {
+            // top: -100%;
+            background-color: #FF6600;
+            transition: all .05s;
+          }
+          &:nth-child(2) {
+            // margin-top: -100%;
+            z-index: 1;
+            background-color: #FF9933;
+          }
+          &:nth-child(3) {
+            // top: 100%;
+            background-color:#FFFF33;
+            transition: all .05s;
+          }
+          &:hover {
+            background-color: #fff;
+          }
         }
         &:hover {
-          background-color: #fff;
+          .option {
+            &:nth-child(1) {
+              top: -100%;
+            }
+            &:nth-child(3) {
+              top: 100%;
+            }
+          }
         }
-      } 
+      }
+      
     }
     button {
+      flex: 1 0 40px;
+      // height: 2rem;
       padding: 0.2rem 0.5rem;
       background-color: #fff;
       border-radius: 5px;
@@ -105,22 +150,40 @@ header {
 }
 // 主体
 main {
-  width: 60%;
+  width: 90%;
   margin: 0 auto;
   label {
     font-size: 2rem;
   }
   &>div {
     min-height: 100px;
+    >span {
+      float: right;
+      line-height: 2rem;
+    }
     li {
-      font-size: 1.5rem;
+      position: relative;
+      font-size: 2rem;
       background-color: #FFCC99;
       min-height: 40px;
       line-height: 40px;
-      >input {
-        width: 2rem;
-        height: 2rem;
-        vertical-align: middle;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-left: 40px;
+      #tick {
+        // display: inline;
+        // float: left;
+        position: absolute;
+        top: 50%;
+        left: 0.4rem;
+        
+        transform-origin: left top;
+        transform: scale(0.3) translateY(-50%);
+      }
+      .btn-delete {
+        flex-basis: 20px;
+        cursor: pointer;
       }
     }
   }
