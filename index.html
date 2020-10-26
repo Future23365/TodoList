@@ -16,9 +16,10 @@
       <input id="readinput" type="text" placeholder="请输入计划进行的事项">
       <div class="select">
         <ul>
-          <li class="option">优先级： 高</li>
-          <li class="option">优先级：中</li>
-          <li class="option">优先级：低</li>
+          <!-- <div class="selected">优先级：中</div> -->
+          <li class="option" data-typei="important">优先级： 高</li>
+          <li class="option" data-typei="normal">优先级：中</li>
+          <li class="option" data-typei="unimportant">优先级：低</li>
         </ul>
       </div>
       <!-- <select name="" id="">
@@ -33,15 +34,15 @@
     <div id="unaccomplished">
       <label for=""> 未完成</label><span>时间排序</span>
       <br>
-      <ul>
-        <li><canvas id="tick" width="100" height="100"></canvas>123 <div class="btn-delete">X</div> </li>
+      <ul class="un">
+        <!-- <li><canvas id="tick" width="100" height="100"></canvas><span>123</span><div class="btn-delete">X</div> </li> -->
       </ul>
     </div>
     <div id="complete">
       <label for=""> 已完成</label>
       <br>
-      <ul>
-        <li>456</li>
+      <ul class="co">
+        <!-- <li>456</li> -->
       </ul>
     </div>
   </main>

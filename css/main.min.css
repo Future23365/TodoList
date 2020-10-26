@@ -40,9 +40,9 @@ header > div .select ul .option:nth-child(3) { background-color: #FFFF33; transi
 
 header > div .select ul .option:hover { background-color: #fff; }
 
-header > div .select ul:hover .option:nth-child(1) { top: -100%; }
+header > div .select .hover .option:nth-child(1) { top: -100%; }
 
-header > div .select ul:hover .option:nth-child(3) { top: 100%; }
+header > div .select .hover .option:nth-child(3) { top: 100%; }
 
 header > div button { flex: 1 0 40px; padding: 0.2rem 0.5rem; background-color: #fff; border-radius: 5px; }
 
@@ -56,9 +56,11 @@ main > div { min-height: 100px; }
 
 main > div > span { float: right; line-height: 2rem; }
 
-main > div li { position: relative; font-size: 2rem; background-color: #FFCC99; min-height: 40px; line-height: 40px; display: flex; justify-content: space-between; align-items: center; padding-left: 40px; }
+main > div li { position: relative; font-size: 2rem; background-color: #FFCC99; height: 40px; line-height: 40px; display: flex; justify-content: space-between; align-items: center; padding-left: 40px; transition: margin-top 0.5s, opacity 0.5s; }
 
 main > div li #tick { position: absolute; top: 50%; left: 0.4rem; transform-origin: left top; transform: scale(0.3) translateY(-50%); }
 
 main > div li .btn-delete { flex-basis: 20px; cursor: pointer; }
+
+main > div .update { opacity: 0; }
 /*# sourceMappingURL=main.min.css.map */
