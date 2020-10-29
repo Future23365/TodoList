@@ -52,9 +52,11 @@ main { width: 90%; margin: 0 auto; }
 
 main label { font-size: 2rem; }
 
-main > div { min-height: 100px; }
+main > div { width: 100%; min-height: 100px; }
 
-main > div > span { float: right; line-height: 2rem; }
+main > div > span { line-height: 2rem; }
+
+main > div ul { transition: all 0.5s; background-color: skyblue; }
 
 main > div li { position: relative; font-size: 2rem; background-color: #FFCC99; height: 40px; line-height: 40px; display: flex; justify-content: space-between; align-items: center; padding-left: 40px; transition: margin-top 0.5s, opacity 0.5s; }
 

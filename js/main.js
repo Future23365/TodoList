@@ -12,7 +12,6 @@ let data = {
     return JSON.parse(localStorage.getItem('todoList'));
   },
   set data(data) {
-    
     let temp = JSON.parse(localStorage.getItem('todoList'));
     data.index = temp.length; //把数据的长度当做每个数据的唯一标号，只要增加数据长度一定会变
     data.time = Date.now();
@@ -63,14 +62,21 @@ let data = {
     localStorage.setItem('todoList', JSON.stringify(temp));
   },
   addshow: function (li, type) {
+
+    console.log(`${this[type].offsetHeight + 40}px`);
+    this[type].style.height = `${this[type].offsetHeight + 40}px`;
     this[type].appendChild(li);
+    // console.log(this[type].style.height, this[type]);
+    
       setTimeout(() => {
         li.style.marginTop = '0';
       }, 10)
   },
   removeshow: function(li, type, new_li) {
     li.classList.add('update');
+    this[type].style.height = `${this[type].offsetHeight - 40}px`;
     setTimeout(() => {
+      
       this[type].removeChild(li);
       // new_li.classList.remove('update');
       // new_li.style.marginTop = '-40px'
@@ -78,16 +84,28 @@ let data = {
     }, 500)
     
   },
-  init: function () {
-    if (localStorage.getItem('todoList') === null) {
-      localStorage.setItem('todoList', JSON.stringify([]));
-    };
-    let arr = this.data;
-    for (let i = 0; i < arr.length; i++) {
-      this.time.push(arr[i].index);
-      this.degree[arr[i].degree].push(arr[i].index);
-      this.addshow(createLI(arr[i].value, arr[i].index, arr[i].flag), arr[i].flag === true ? 'complete' : 'unaccomplished')
+  init: function (type) {
+    if(type === '时间') {
+      if (localStorage.getItem('todoList') === null) {
+        localStorage.setItem('todoList', JSON.stringify([]));
+      };
+      let arr = this.data;
+      for (let i = 0; i < arr.length; i++) {
+        this.time.push(arr[i].index);
+        this.degree[arr[i].degree].push(arr[i].index);
+        this.addshow(createLI(arr[i].value, arr[i].index, arr[i].flag), arr[i].flag === true ? 'complete' : 'unaccomplished')
+      }
+    }else if(type === '重要程度') {
+      let temp = ['important', 'normal', 'unimportant']
+      for(let i = 0; i < temp.length; i++) {
+        for(let j = 0; j < this.degree[temp[i]].length; j++) {
+          console.log(this.degree[temp[i]])
+          console.log(this.degree[temp[i]][j])
+          this.addshow(createLI(this.data[this.degree[temp[i]][j]].value, this.data[this.degree[temp[i]][j]].index, this.data[this.degree[temp[i]][j]].flag), this.data[this.degree[temp[i]][j]].flag === true ? 'complete' : 'unaccomplished')
+        } 
+      }
     }
+    
   }
 }
 
@@ -112,8 +130,6 @@ function init() {
     event.target.style.zIndex = 1;
     select.classList.toggle('hover');
     // select.classList.remove('hover');
-    
-
   })
 
   let readinput = document.querySelector('#readinput');
@@ -128,16 +144,68 @@ function init() {
     }
   })
 
-  data.init();
-  console.log(data)
-}
-//更新函数
-function update(o) {
-  let li = document.createElement('li');
-  li.setAttribute('data-index', o.index);
+  data.init('时间');
 
+  let sort_span = document.querySelector('#unaccomplished .sort');
+  sort_span.addEventListener('click', (e) => {
+    sort(e, ul_un, ul_co)
+  })
 }
-
+function sort(e, ul_un, ul_co) {
+  ul_un.innerHTML = '';
+  ul_co.innerHTML = ''
+  data.init('重要程度');
+}
+// 删除按钮事件
+function delete_button(e) {
+  console.log(e.target.parentElement.getAttribute('data-index'));
+}
+//对勾切换
+function tick_update(e, tick_context, x) {
+  if(e.target.parentElement.parentElement = 'un') {
+    tick_animation(tick_context, x);
+  } else {
+    tick_clear(tick_context)
+  }
+  data.updateValue(e.target.parentElement);
+}
+// 对勾绘制动画
+function tick_animation(tick_context, x) {
+  if (x < 50) {
+    tick_context.beginPath();
+    tick_context.lineWidth = 5
+    tick_context.save();
+    tick_context.moveTo(x - 10, x + 20);
+    x = x + 5
+    tick_context.lineTo(x - 10, x + 20);
+    tick_context.stroke();
+    tick_context.restore();
+    // requestAnimationFrame(tick_animation.bind(null, tick_context, x));
+    requestAnimationFrame(() => {
+      tick_animation(tick_context, x)
+    })
+  } else if (x >= 50 && x < 100) {
+    let y = -x + 100;
+    tick_context.beginPath();
+    tick_context.lineWidth = 5
+    tick_context.save();
+    tick_context.moveTo(x - 10, y + 20);
+    x = x + 5;
+    y = -x + 100
+    tick_context.lineTo(x - 10, y + 20);
+    tick_context.stroke();
+    tick_context.restore();
+    // requestAnimationFrame(tick_animation.bind(null, tick_context, x));
+    requestAnimationFrame(() => {
+      tick_animation(tick_context, x)
+    })
+  }
+}
+// 清除canvas
+function tick_clear(tick_context) {
+  tick_context.fillRect(0, 0, 100, 100);
+  tick_context.clearRect(5, 5, 90, 90);
+}
 
 //定义创建li的函数
 function createLI(text, index, flag = false) {
@@ -153,56 +221,24 @@ function createLI(text, index, flag = false) {
   tick_context.fillStyle = 'white';
   tick_context.fillRect(0, 0, 100, 100);
   tick_context.clearRect(5, 5, 90, 90);
-  let x = 20; //画线的x轴初始位置
-  function tick_animation() {
-    if (x < 50) {
-      tick_context.beginPath();
-      tick_context.lineWidth = 5
-      tick_context.save();
-      tick_context.moveTo(x - 10, x + 20);
-      x = x + 5
-      tick_context.lineTo(x - 10, x + 20);
-      tick_context.stroke();
-      tick_context.restore();
-      requestAnimationFrame(tick_animation);
-    } else if (x >= 50 && x < 100) {
-      let y = -x + 100;
-      tick_context.beginPath();
-      tick_context.lineWidth = 5
-      tick_context.save();
-      tick_context.moveTo(x - 10, y + 20);
-      x = x + 5;
-      y = -x + 100
-      tick_context.lineTo(x - 10, y + 20);
-      tick_context.stroke();
-      tick_context.restore();
-      requestAnimationFrame(tick_animation)
-    }
-  }
-  function tick_clear() {
-    console.log('清空')
-    tick_context.fillRect(0, 0, 100, 100);
-    tick_context.clearRect(5, 5, 90, 90);
-  }
-  tick.addEventListener('click', function (e) {
-    if(e.target.parentElement.parentElement = 'un') {
-      tick_animation();
-    } else {
-      tick_clear()
-    }
-    
-    data.updateValue(e.target.parentElement);
+  // let x = 20; //画线的x轴初始位置
+  
+  tick.addEventListener('click', (e) => {
+    tick_update(e, tick_context, 20);
   })
   let span = document.createElement('span');
   span.innerHTML = text;
   let button = document.createElement('div');
   button.className = 'btn-delete';
   button.innerText = 'X';
+  button.addEventListener('click', (e) => {
+    delete_button(e)
+  })
   li.appendChild(tick);
   li.appendChild(span);
   li.appendChild(button);
   if(flag) {
-    tick_animation()
+    tick_animation(tick_context, 20)
   }
   return li
 }

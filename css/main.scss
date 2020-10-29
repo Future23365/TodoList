@@ -168,16 +168,23 @@ main {
     font-size: 2rem;
   }
   >div {
+    width: 100%;
     min-height: 100px;
     >span {
-      float: right;
+      // float: right;
       line-height: 2rem;
+      // vertical-align: right;
+    }
+    ul {
+      transition: all 0.5s;
+      background-color: skyblue;
     }
     li {
       position: relative;
       font-size: 2rem;
       background-color: #FFCC99;
       height: 40px;
+      // width: 100%;
       line-height: 40px;
       display: flex;
       justify-content: space-between;
