@@ -1,0 +1,30 @@
+{
+  "name": "TodoList",
+  "version": "1.0.0",
+  "description": "- 一个用纯原生写的待办事项工具\r - 利用html5本地存储\r - 清爽的页面\r - ~~可以添加、删除事件~~\r - ~~有一些简单的动画~~\r - ~~在线预览:https://future23365.github.io/TodoList/~~\r - 项目重写中...",
+  "private": true,
+  "dependencies": {},
+  "devDependencies": {
+    "css-loader": "^5.0.0",
+    "style-loader": "^2.0.0",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "webpack-dev-server --open",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Future23365/TodoList.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Future23365/TodoList/issues"
+  },
+  "homepage": "https://github.com/Future23365/TodoList#readme"
+}

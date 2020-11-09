@@ -1,3 +1,5 @@
+import "../css/main.min.css";
+
 //用于存储数据及按分类保存数据标号
 let data = {
   time: [], //按时间顺序存入每个数据的唯一标号
@@ -8,6 +10,10 @@ let data = {
   },
   unaccomplished: null,
   complete: null,
+  number: {
+    unaccomplished: 0,
+    complete: 0
+  },
   get data() {
     return JSON.parse(localStorage.getItem('todoList'));
   },
@@ -41,48 +47,60 @@ let data = {
     }
     this.data = temp;
   },
-  removeValue: function (index) {
-    for (let i = 0; i < this.time.length; i++) {
-      if (this.data[i].index === index) {
-        this.data.splice(i, 1);
-        return;
+  removeValue: function (e) {
+    let value = e.target.parentElement.parentElement.className === 'un' ? 'unaccomplished' : 'complete';
+    let temp = this.data;
+    console.log(temp)
+    for (let i = 0; i < temp.length; i++) {
+      console.log(i)
+      console.log(temp[i].index, e.target.parentElement.getAttribute('data-index'))
+      if (temp[i].index === parseInt(e.target.parentElement.getAttribute('data-index'))) {
+        temp.splice(i, 1);
+        this.removeshow(e.target.parentElement,value);
+        localStorage.setItem('todoList', JSON.stringify(temp));
+        return
       }
     }
+    
   },
   updateValue: function (el) {
     let temp = JSON.parse(localStorage.getItem('todoList'));
     for (let i = 0; i < temp.length; i++) {
       if (temp[i].index === parseInt(el.getAttribute('data-index'))) {
-        temp[i].flag = !temp[i].flag
-        let new_li = createLI(temp[i].value, temp[i].index, temp[i].flag)
+        temp[i].flag = !temp[i].flag;
+        let new_li = createLI(temp[i].value, temp[i].index, temp[i].flag);
         this.removeshow(el, temp[i].flag === false ? 'complete' : 'unaccomplished', new_li);
-        continue;
+        localStorage.setItem('todoList', JSON.stringify(temp));
+        return
       }
     }
-    localStorage.setItem('todoList', JSON.stringify(temp));
+    
   },
   addshow: function (li, type) {
-
-    console.log(`${this[type].offsetHeight + 40}px`);
-    this[type].style.height = `${this[type].offsetHeight + 40}px`;
+    console.log(li)
+    this.number[type]++;
+    // console.log(`${this[type].offsetHeight + 40}px`);
+    this[type].style.height = `${this.number[type] * 40}px`;
     this[type].appendChild(li);
-    // console.log(this[type].style.height, this[type]);
-    
       setTimeout(() => {
         li.style.marginTop = '0';
       }, 10)
   },
   removeshow: function(li, type, new_li) {
+    console.log(this[type])
+    // console.log(this[type],li)
     li.classList.add('update');
-    this[type].style.height = `${this[type].offsetHeight - 40}px`;
-    setTimeout(() => {
-      
-      this[type].removeChild(li);
-      // new_li.classList.remove('update');
-      // new_li.style.marginTop = '-40px'
-      type === 'complete' ? this.addshow(new_li,'unaccomplished') : this.addshow(new_li, 'complete')
-    }, 500)
-    
+    this.number[type]--;
+    this[type].removeChild(li);
+    this[type].style.height = `${this.number[type] * 40}px`;
+    if(new_li) {
+
+      setTimeout(() => {
+        // new_li.classList.remove('update');
+        // new_li.style.marginTop = '-40px'
+        type === 'complete' ? this.addshow(new_li,'unaccomplished') : this.addshow(new_li, 'complete')
+      }, 100)
+    }
   },
   init: function (type) {
     if(type === '时间') {
@@ -93,14 +111,17 @@ let data = {
       for (let i = 0; i < arr.length; i++) {
         this.time.push(arr[i].index);
         this.degree[arr[i].degree].push(arr[i].index);
-        this.addshow(createLI(arr[i].value, arr[i].index, arr[i].flag), arr[i].flag === true ? 'complete' : 'unaccomplished')
+        // setTimeout(() => {
+          this.addshow(createLI(arr[i].value, arr[i].index, arr[i].flag), arr[i].flag === true ? 'complete' : 'unaccomplished');
+          // console.log('创建li')
+        // }, i * 500)
       }
     }else if(type === '重要程度') {
       let temp = ['important', 'normal', 'unimportant']
       for(let i = 0; i < temp.length; i++) {
         for(let j = 0; j < this.degree[temp[i]].length; j++) {
-          console.log(this.degree[temp[i]])
-          console.log(this.degree[temp[i]][j])
+          console.log(this.degree[temp[i]]);
+          console.log(this.degree[temp[i]][j]);
           this.addshow(createLI(this.data[this.degree[temp[i]][j]].value, this.data[this.degree[temp[i]][j]].index, this.data[this.degree[temp[i]][j]].flag), this.data[this.degree[temp[i]][j]].flag === true ? 'complete' : 'unaccomplished')
         } 
       }
@@ -133,16 +154,27 @@ function init() {
   })
 
   let readinput = document.querySelector('#readinput');
+  let buttoninput = document.querySelector('#buttoninput');
   //监听输入框事件
-  readinput.addEventListener('keydown', function (event) {
+  readinput.addEventListener('keydown', event => {
     if (event.key === 'Enter') {
-      let o = {};
-      o.value = this.value;
-      o.degree = typei;
-      data.addValue(o);
-      console.log(data);
+      event_input();
     }
   })
+  buttoninput.addEventListener('click', () => {
+    event_input()
+  })
+  function event_input() {
+    let o = {};
+      o.value = readinput.value;
+      console.log(readinput.value.trim())
+      if(readinput.value.trim() !== '') {
+        o.degree = typei;
+        data.addValue(o);
+        console.log(data);
+        readinput.value = ''
+      }
+  }
 
   data.init('时间');
 
@@ -158,11 +190,12 @@ function sort(e, ul_un, ul_co) {
 }
 // 删除按钮事件
 function delete_button(e) {
-  console.log(e.target.parentElement.getAttribute('data-index'));
+  console.log(e);
+  data.removeValue(e);
 }
 //对勾切换
 function tick_update(e, tick_context, x) {
-  if(e.target.parentElement.parentElement = 'un') {
+  if(e.target.parentElement.parentElement.className = 'un') {
     tick_animation(tick_context, x);
   } else {
     tick_clear(tick_context)
@@ -224,7 +257,7 @@ function createLI(text, index, flag = false) {
   // let x = 20; //画线的x轴初始位置
   
   tick.addEventListener('click', (e) => {
-    tick_update(e, tick_context, 20);
+      tick_update(e, tick_context, 20);
   })
   let span = document.createElement('span');
   span.innerHTML = text;
