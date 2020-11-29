@@ -52,8 +52,8 @@ let data = {
     let temp = this.data;
     console.log(temp)
     for (let i = 0; i < temp.length; i++) {
-      console.log(i)
-      console.log(temp[i].index, e.target.parentElement.getAttribute('data-index'))
+      // console.log(i)
+      // console.log(temp[i].index, e.target.parentElement.getAttribute('data-index'))
       if (temp[i].index === parseInt(e.target.parentElement.getAttribute('data-index'))) {
         temp.splice(i, 1);
         this.removeshow(e.target.parentElement,value);
@@ -77,7 +77,7 @@ let data = {
     
   },
   addshow: function (li, type) {
-    console.log(li)
+    // console.log(li)
     this.number[type]++;
     // console.log(`${this[type].offsetHeight + 40}px`);
     this[type].style.height = `${this.number[type] * 40}px`;
@@ -87,7 +87,7 @@ let data = {
       }, 10)
   },
   removeshow: function(li, type, new_li) {
-    console.log(this[type])
+    // console.log(this[type])
     // console.log(this[type],li)
     li.classList.add('update');
     this.number[type]--;
@@ -102,31 +102,43 @@ let data = {
       }, 100)
     }
   },
-  init: function (type) {
+  init: function () {
+    if (localStorage.getItem('todoList') === null) {
+      localStorage.setItem('todoList', JSON.stringify([]));
+    };
+    let arr = this.data;
+    for (let i = 0; i < arr.length; i++) {
+      this.time.push(arr[i].index);
+      this.degree[arr[i].degree].push(arr[i].index);
+      // setTimeout(() => {
+        this.addshow(createLI(arr[i].value, arr[i].index, arr[i].flag), arr[i].flag === true ? 'complete' : 'unaccomplished');
+        // console.log('创建li')
+      // }, i * 500)
+    }
+    
+  },
+  changeSort: function(type) {
+    this.number.unaccomplished = 0;
+    this.number.complete = 0;
     if(type === '时间') {
-      if (localStorage.getItem('todoList') === null) {
-        localStorage.setItem('todoList', JSON.stringify([]));
-      };
       let arr = this.data;
       for (let i = 0; i < arr.length; i++) {
-        this.time.push(arr[i].index);
-        this.degree[arr[i].degree].push(arr[i].index);
         // setTimeout(() => {
           this.addshow(createLI(arr[i].value, arr[i].index, arr[i].flag), arr[i].flag === true ? 'complete' : 'unaccomplished');
           // console.log('创建li')
         // }, i * 500)
       }
     }else if(type === '重要程度') {
-      let temp = ['important', 'normal', 'unimportant']
+      let temp = ['important', 'normal', 'unimportant'];
+
       for(let i = 0; i < temp.length; i++) {
         for(let j = 0; j < this.degree[temp[i]].length; j++) {
-          console.log(this.degree[temp[i]]);
+          // console.log(this.degree[temp[i]]);
           console.log(this.degree[temp[i]][j]);
           this.addshow(createLI(this.data[this.degree[temp[i]][j]].value, this.data[this.degree[temp[i]][j]].index, this.data[this.degree[temp[i]][j]].flag), this.data[this.degree[temp[i]][j]].flag === true ? 'complete' : 'unaccomplished')
         } 
       }
     }
-    
   }
 }
 
@@ -176,7 +188,7 @@ function init() {
       }
   }
 
-  data.init('时间');
+  data.init();
 
   let sort_span = document.querySelector('#unaccomplished .sort');
   sort_span.addEventListener('click', (e) => {
@@ -185,8 +197,16 @@ function init() {
 }
 function sort(e, ul_un, ul_co) {
   ul_un.innerHTML = '';
-  ul_co.innerHTML = ''
-  data.init('重要程度');
+  ul_co.innerHTML = '';
+  console.log(e.target.innerText);
+  if(e.target.innerText === '时间') {
+    data.changeSort('重要程度');
+    e.target.innerText = '重要程度'
+  } else if(e.target.innerText === '重要程度') {
+    data.changeSort('时间');
+    e.target.innerText = '时间'
+  }
+  
 }
 // 删除按钮事件
 function delete_button(e) {
